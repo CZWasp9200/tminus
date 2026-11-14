@@ -296,6 +296,10 @@ button{font-family:inherit;color:inherit}
 .reportbtn{position:absolute;right:12px;bottom:calc(100% + 34px);font-family:inherit;font-size:12px;font-weight:800;border:0;background:var(--yellow);color:var(--ink);padding:5px 10px;border-radius:3px;box-shadow:2px 2px 0 var(--ink);cursor:pointer;pointer-events:auto}
 .reportbtn[hidden]{display:none}
 .dock-in{position:relative}
+.account{margin:4px 0 14px}
+.account[hidden]{display:none}
+.account p{margin:0 0 8px;font-size:12.5px;font-weight:600;line-height:1.4}
+.account .btn{height:46px;font-size:15px}
 .pilotid{margin:0 0 8px;font-size:10.5px;color:var(--blue);word-break:break-all;user-select:all}
 .pilotid:empty{display:none}
 .nickerr{min-height:14px;margin:6px 0 2px;font-size:12px;font-weight:700;color:var(--red)}
@@ -339,6 +343,9 @@ button{font-family:inherit;color:inherit}
 /* voice mode */
 #voiceBtn[hidden]{display:none}
 .voicebtn.on{border-bottom-color:var(--pink)}
+.voicebtn.na{opacity:.75;border-bottom-style:dashed}
+.voiceinfo{margin:0;font-size:12px;font-weight:700;line-height:1.4;background:var(--paper);color:var(--ink);padding:6px 10px;text-align:center}
+.voiceinfo[hidden]{display:none}
 #micBtn{display:none;width:48px;height:48px;border-radius:50%;border:0;background:var(--red);color:var(--paper);place-items:center;cursor:pointer;flex:none;margin-right:6px;position:relative}
 #micBtn svg{width:22px;height:22px}
 #dock.voice #micBtn{display:grid}
@@ -444,6 +451,7 @@ button{font-family:inherit;color:inherit}
         <button class="tool" id="openPilot" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c1.2-3.6 3.8-5.2 7-5.2s5.8 1.6 7 5.2"/></svg><span id="pilotName">Pilot</span></button>
       </div>
       <div class="modes"><button class="modebtn voicebtn" id="voiceBtn" type="button" hidden>Hrát hlasem</button><button class="modebtn" id="trainBtn" type="button">Trénink s náhodným písmenem</button><button class="modebtn" id="duelBtn" type="button">Souboj 1 na 1</button></div>
+      <p class="voiceinfo" id="voiceInfo" hidden>Aplikace Claude v telefonu nedovolí hrám používat mikrofon. Pro hraní hlasem otevři odkaz hry v prohlížeči Chrome.</p>
       <div class="status" id="dbStatus"></div>
     </div>
     <div class="sheetwrap" id="sheet" hidden>
@@ -451,6 +459,7 @@ button{font-family:inherit;color:inherit}
         <div class="bhead"><h2 id="sheetTitle">Pilot</h2><button class="icon" id="sheetClose" aria-label="Zavřít"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
         <div id="sheetPilotWrap"><div id="sheetPilot"><input class="nick" id="nick" maxlength="18" placeholder="Přezdívka pilota" autocomplete="nickname"><button class="btn" id="nickOk" type="button">Uložit</button></div>
           <p class="nickerr" id="nickErr"></p><p class="pilotid" id="pilotId"></p>
+          <div class="account" id="account" hidden><p id="accText"></p><button class="btn ghost" id="accBtn" type="button">Přihlásit přes Google</button></div>
           <div class="whead"><span class="cap">Odznaky</span></div><div class="badges" id="badgeGrid"></div></div>
         <div id="sheetDuel" hidden>
           <p class="duelstate" id="duelState"></p>
