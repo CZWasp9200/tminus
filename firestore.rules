@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Sem doplň své ID pilota (krok 10), aby ses mohl schvalovat nahlášená slova.
+    function isAdmin() { return request.auth != null && request.auth.uid == "SEM_TVOJE_ID"; }
+
+    match /best/{uid} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /reports/{uid} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == uid);
+      allow write: if isAdmin() || (request.auth != null && request.auth.uid == uid);
+    }
+    match /extra/{doc} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /duels/{code} {
+      allow read, write: if request.auth != null;
+      match /live/{uid} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+  }
+}
