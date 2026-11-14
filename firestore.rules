@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     // Sem doplň své ID pilota (krok 10), aby ses mohl schvalovat nahlášená slova.
-    function isAdmin() { return request.auth != null && request.auth.uid == "SEM_TVOJE_ID"; }
+    function isAdmin() { return request.auth != null && request.auth.uid == "2hGd3qjm4tYrnPXC8M72stZX9wA2"; }
 
     match /best/{uid} {
       allow read: if true;
